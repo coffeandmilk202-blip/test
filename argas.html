@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Historia de Alex y Sofía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500&family=Cormorant+Garamond:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --book-w: 300px; /* Tamaño base */
+            --book-h: 460px;
+            --paper: #fdfbf7;
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        /* AJUSTE MÓVIL: El libro ocupa el 85% del ancho de la pantalla */
+        @media (max-width: 600px) {
+            :root {
+                --book-w: 85vw;
+                --book-h: 70vh;
+            }
+        }
+
+        /* --- LANDING SCREEN (PANTALLA DE INICIO) --- */
+        #landing {
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease;
+            text-align: center;
+            padding: 20px;
+        }
+        .btn-enter {
+            padding: 15px 40px; background: var(--gold); border: none; color: #000;
+            font-size: 1.1rem; cursor: pointer; border-radius: 50px; margin-top: 20px;
+            font-weight: bold; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* --- ESCENA 3D --- */
+        .scene {
+            position: relative; width: var(--book-w); height: var(--book-h);
+            transform-style: preserve-3d;
+        }
+
+        .book {
+            width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+            touch-action: manipulation; /* Mejora la respuesta táctil */
+        }
+
+        /* --- PÁGINAS --- */
+        .page {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            transform-origin: left center;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .face {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            background: var(--paper);
+            display: flex; flex-direction: column;
+            border-radius: 4px 12px 12px 4px;
+            overflow: hidden;
+        }
+
+        .front { z-index: 2; box-shadow: inset 10px 0 20px rgba(0,0,0,0.1); }
+        .back {
+            transform: rotateY(180deg); z-index: 1;
+            box-shadow: inset -10px 0 20px rgba(0,0,0,0.1);
+            background: #f6f1e6;
+        }
+
+        .flipped { transform: rotateY(-180deg); }
+
+        /* --- CONTENIDO --- */
+        .content {
+            padding: 20px; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        
+        h1 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #b76e79; margin-bottom: 5px; line-height: 1; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #4a4a4a; margin-bottom: 10px; }
+        p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.4; color: #555; }
+        
+        .photo-container {
+            width: 90%; height: 45%; background: #fff;
+            margin: 15px auto; padding: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transform: rotate(-2deg);
+        }
+        .photo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* PORTADA */
+        .cover-front {
+            background: #5d4037;
+            background-image: url('https://www.transparenttextures.com/patterns/leather.png');
+            color: var(--gold); border: 2px solid #3e2723;
+        }
+        .border-deco {
+            border: 2px solid var(--gold); padding: 15px; width: 90%; height: 90%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        .hint {
+            position: absolute; bottom: -40px; width: 100%; text-align: center;
+            color: rgba(255,255,255,0.6); font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="landing">
+        <h1 style="color:white; font-size: 3.5rem;">Alex & Sofía</h1>
+        <p style="color:#ddd; margin-bottom:20px;">Una historia interactiva</p>
+        <button class="btn-enter" id="startBtn">ABRIR REGALO ❤️</button>
+        <p style="color:#888; font-size: 0.8rem; margin-top: 20px;">(Sube el volumen)</p>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-moment-1403.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="scene">
+        <div class="book" id="book">
+            
+            <div class="page" style="z-index: 4;">
+                <div class="face front cover-front">
+                    <div class="border-deco">
+                        <span style="font-size: 3rem;">❤</span>
+                        <h1 style="color: var(--gold);">Para<br>Sofía</h1>
+                        <p style="color: #bbb; margin-top:20px; font-size: 0.9rem;">2024</p>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="content">
+                        <h2>Querida Sofía</h2>
+                        <p>He creado esto para ti, para guardar nuestros momentos en algo eterno como el código.</p>
+                        <p style="margin-top:20px;">Toca la hoja para continuar...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" style="z-index: 3;">
+                <div class="face front">
+                    <div class="content">
+                        <h2>Primera Cita</h2>
+                        <div class="photo-container">
+                            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500" alt="Foto">
+                        </div>
+                        <p>Aún recuerdo los nervios de ese día y tu sonrisa.</p>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="content">
+                        <h2>Tus Ojos</h2>
+                        <p>Tienen un brillo que ilumina incluso mis días más oscuros de programación.</p>
+                        <span style="font-size: 3rem; margin-top: 20px;">✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" style="z-index: 2;">
+                <div class="face front">
+                    <div class="content">
+                        <h2>Aventuras</h2>
+                        <div class="photo-container" style="transform: rotate(3deg);">
+                            <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500" alt="Viaje">
+                        </div>
+                        <p>Cada viaje contigo es mi parte favorita de la vida.</p>
+                    </div>
+                </div>
+                <div class="face back">
+                    <div class="content">
+                        <h2>Promesas</h2>
+                        <ul style="text-align: left; padding-left: 20px; font-size: 1rem; color: #444;">
+                            <li>Hacerte reír siempre.</li>
+                            <li>Apoyar tus sueños.</li>
+                            <li>Quererte cada día más.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" style="z-index: 1;">
+                <div class="face front">
+                    <div class="content">
+                        <h2>Te Amo</h2>
+                        <h1 style="color: #e91e63; margin-top: 30px;">❤</h1>
+                    </div>
+                </div>
+                <div class="face back" style="background: #3e2723;">
+                    <div class="content" style="color: white;">
+                        <h2>Fin</h2>
+                        <p>Con amor, Alex.</p>
+                        <button id="resetBtn" style="margin-top: 30px; padding: 10px 20px; border: 1px solid white; background: transparent; color: white; border-radius: 20px;">Volver al inicio</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="hint">Toca el libro para pasar página</div>
+    </div>
+
+    <script>
+        // --- VARIABLES Y LÓGICA ---
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+        const totalPages = pages.length;
+        const book = document.getElementById('book');
+        const music = document.getElementById('bg-music');
+        const landing = document.getElementById('landing');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        // 1. INICIAR (Manejo robusto de Audio)
+        startBtn.addEventListener('click', () => {
+            landing.style.opacity = 0;
+            // Esperar a que termine la animación para quitar el display
+            setTimeout(() => { landing.style.display = 'none'; }, 800);
+
+            // Intentar reproducir audio con manejo de errores
+            music.volume = 0.5;
+            const playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Autoplay bloqueado o fallo de carga: ", error);
+                    // El libro funcionará igual aunque no haya música
+                });
+            }
+        });
+
+        // 2. DETECTAR TOQUE O CLIC EN EL LIBRO
+        // Usamos 'click' estándar que funciona en móviles modernos, 
+        // pero prevenimos propagación para evitar doble disparo
+        book.addEventListener('click', (e) => {
+            // Si tocan el botón de reiniciar, no pasar página
+            if(e.target.id === 'resetBtn') return;
+
+            if (currentPage < totalPages) {
+                flipNext();
+            }
+        });
+
+        // Reiniciar libro
+        resetBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar que el clic se vaya al libro
+            resetBook();
+        });
+
+        function flipNext() {
+            if(currentPage >= totalPages) return;
+            const page = pages[currentPage];
+            
+            page.classList.add('flipped');
+            page.style.zIndex = currentPage + 1; // Ajuste visual de capas
+            
+            currentPage++;
+        }
+
+        function resetBook() {
+            // Cerrar todas las páginas en orden inverso
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    page.classList.remove('flipped');
+                    page.style.zIndex = totalPages - index;
+                }, index * 100);
+            });
+            currentPage = 0;
+        }
+
+        // Inicializar Z-Index correcto al cargar
+        pages.forEach((page, index) => {
+            page.style.zIndex = totalPages - index;
+        });
+
+    </script>
+</body>
+</html>
