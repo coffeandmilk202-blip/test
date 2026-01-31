@@ -46,8 +46,25 @@ function crearCometa() {
     setTimeout(()=>com.remove(), 6000);
 }
 
-// CONTROL LIBRO
+// ============================================
+// LÓGICA DE CONTROL DEL LIBRO Y CLICS
+// ============================================
+
 function reproducir(id) { const a=document.getElementById(id); if(a){a.currentTime=0;a.play().catch(()=>{});}}
+
+// Función inteligente para clicks en la página
+function gestionarClic(zonaDiv) {
+    const hoja = zonaDiv.closest('.hoja');
+    
+    // Si la hoja ya fue pasada (está a la izquierda), queremos volver
+    if (hoja.classList.contains('pasada')) {
+        volverHoja(zonaDiv);
+    } 
+    // Si la hoja no ha sido pasada (está a la derecha), queremos avanzar
+    else {
+        pasarHoja(zonaDiv);
+    }
+}
 
 function girarLibroEntero() {
     const libro = document.getElementById('libro');
@@ -69,16 +86,23 @@ function abrirLibro() {
 }
 
 function pasarHoja(btn) {
-    const h = btn.closest('.hoja'); h.classList.add('pasada');
+    const h = btn.closest('.hoja'); 
+    h.classList.add('pasada');
     reproducir('snd-hoja');
+    
+    // Mover Z-index para que se apile bien en la izquierda
     const pasadas = document.querySelectorAll('.hoja.pasada').length;
     setTimeout(()=>h.style.zIndex = pasadas+500, 500); 
 }
 
 function volverHoja(zona) {
-    const h = zona.closest('.hoja'); h.classList.remove('pasada');
+    const h = zona.closest('.hoja'); 
+    h.classList.remove('pasada');
     reproducir('snd-hoja');
+    
+    // Restaurar Z-index original para que vuelva a su sitio
     h.style.zIndex = 1000; 
+    
     setTimeout(()=>{
         if(h.classList.contains('portada')) {
             document.getElementById('libro').classList.remove('abierto');
