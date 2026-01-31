@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,700&display=swap');
 
 :root {
-    --ancho: 460px; --alto: 680px; --grosor: 50px; 
-    --papel: #fdf6e3; --dorado: #e6cfa0; --texto-color: #1a0505;
+    /* TAMAÑOS PARA PC (Por defecto) */
+    --ancho: 460px; 
+    --alto: 680px; 
+    --grosor: 50px; 
+    --papel: #fdf6e3; 
+    --dorado: #e6cfa0; 
+    --texto-color: #1a0505; 
 }
 
 body {
@@ -63,10 +68,10 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 .libro.abierto { transform: translateX(50%); }
 .libro.girado { transform: rotateY(180deg); }
 
-/* --- CORRECCIÓN BUG VISUAL: ESTO ES LO QUE NECESITAS --- */
+/* CORRECCIÓN BUG VISUAL: Ocultar hojas al girar */
 .libro.girado .hoja { 
     opacity: 0 !important; 
-    visibility: hidden !important; /* IMPORTANTE: Hace que desaparezcan de verdad */
+    visibility: hidden !important; 
     pointer-events: none; 
     transition: opacity 0.2s;
 }
@@ -121,25 +126,83 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 h2 { font-family: 'Cinzel'; color: #5a0000; border-bottom: 2px solid var(--dorado); margin-bottom: 15px; font-size: 1.6rem; text-align: center; }
 p { font-family: 'Cormorant Garamond'; font-size: 1.15rem; color: var(--texto-color); font-weight: 600; text-align: justify; line-height: 1.5; margin-bottom: 15px; }
 
+/* Subtítulos para las páginas */
+h3 {
+    font-family: 'Pinyon Script', cursive;
+    color: #800000;
+    font-size: 1.8rem;
+    margin: 10px 0 5px 0;
+    text-align: center;
+    border-bottom: 1px dashed rgba(128, 0, 0, 0.2);
+}
+.hoja.azul-triste h3 { color: #89cff0; border-bottom-color: rgba(137, 207, 240, 0.3); }
+
 .resaltado { color: #800000; font-weight: 700; font-style: italic; }
 .cita { border-left: 3px solid #e6cfa0; padding-left: 15px; margin: 15px 0; font-style: italic; color: #333; background: rgba(230,207,160,0.1); padding: 10px; border-radius: 5px; }
-.frase-impacto { text-align: center; color: #5a0000; font-weight: bold; font-size: 1.3rem; margin: 20px 0; font-family: 'Cinzel'; }
-.marco-gif { width: 100%; height: 160px; border: 2px solid #e6cfa0; margin: 15px 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.1); border-radius: 5px; }
+.frase-impacto { text-align: center; color: #5a0000; font-weight: bold; font-size: 1.2rem; margin: 20px 0; font-family: 'Cinzel'; border-top: 1px solid rgba(230,207,160,0.5); border-bottom: 1px solid rgba(230,207,160,0.5); padding: 10px 0;}
+.marco-gif { width: 100%; height: 160px; border: 3px double #e6cfa0; margin: 15px 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.05); border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .marco-gif img { width: 100%; height: 100%; object-fit: cover; }
 
 .btn { margin-top: auto; align-self: flex-end; border: 2px solid #5a0000; color: #5a0000; padding: 8px 20px; font-family: 'Cinzel'; font-weight: bold; background: transparent; cursor: pointer; }
 .btn-azul { border-color: #89cff0; color: #89cff0; }
 .btn-azul:hover { background: #89cff0; color: #000; }
 .zona-volver { position: absolute; top:0; right:0; width: 60px; height: 100%; cursor: pointer; z-index: 10; }
-.num-pag { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #999; font-family: 'Cinzel'; font-size: 0.8rem; pointer-events: none; }
+.num-pag { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #888; font-family: 'Cinzel'; font-size: 0.9rem; pointer-events: none; letter-spacing: 2px; }
+.num-pag::before { content: '• '; color: var(--dorado); } .num-pag::after { content: ' •'; color: var(--dorado); }
+.hoja.azul-triste .num-pag { color: #5d8aa8; }
 
 /* CONTROLES */
 .barra-controles { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; z-index: 1000; background: rgba(0,0,0,0.6); padding: 10px 30px; border-radius: 50px; backdrop-filter: blur(5px); }
 .btn-control { background: transparent; border: 1px solid var(--dorado); color: var(--dorado); padding: 10px 20px; font-family: 'Cinzel'; cursor: pointer; border-radius: 20px; transition: 0.3s; }
 .btn-control:hover { background: var(--dorado); color: #000; }
 
+/* ========================================= */
+/* ADAPTACIÓN PARA CELULAR (MOVIL)      */
+/* ========================================= */
 @media (max-width: 768px) {
-    :root { --ancho: 85vw; --alto: 65vh; --grosor: 30px; }
-    .libro.abierto { transform: translateX(45vw); }
-    .barra-controles { width: 90%; justify-content: center; gap: 10px; }
+    :root { 
+        /* El libro cerrado ocupa el 44% de ancho para que al abrir ocupe el 88% */
+        --ancho: 44vw; 
+        --alto: 60vh; 
+        --grosor: 20px; 
+    }
+
+    /* Ajustar textos para que quepan en pantalla pequeña */
+    p { font-size: 0.8rem; line-height: 1.3; margin-bottom: 10px; }
+    h2 { font-size: 1.1rem; margin-bottom: 10px; }
+    h3 { font-size: 1rem; margin: 8px 0; }
+    .frase-impacto { font-size: 0.85rem; margin: 15px 0; }
+    .cita { font-size: 0.8rem; padding: 8px; margin: 10px 0; }
+    
+    /* Marcos de GIFs más pequeños */
+    .marco-gif { height: 100px; margin: 10px 0; }
+
+    /* Ajustar padding de las hojas */
+    .hoja { padding: 15px; }
+    
+    /* Ajustar botones de dentro del libro */
+    .btn { padding: 5px 10px; font-size: 0.7rem; border-width: 1px; }
+    
+    /* Broche más pequeño */
+    .broche { width: 20px; height: 50px; right: -8px; }
+
+    /* Barra de controles inferior */
+    .barra-controles { 
+        width: 95%; 
+        justify-content: center; 
+        gap: 8px; 
+        padding: 8px 10px; 
+        bottom: 15px;
+    }
+    .btn-control { 
+        font-size: 0.7rem; 
+        padding: 8px 10px; 
+    }
+    
+    /* Ajuste de posición al abrir en móvil */
+    .libro.abierto { transform: translateX(50%); }
+    
+    /* Tapa trasera ajuste */
+    .titulo-dedicatoria { font-size: 2rem; }
+    .dedicatoria-final p { font-size: 0.9rem; }
 }
