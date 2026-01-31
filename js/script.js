@@ -46,23 +46,18 @@ function crearCometa() {
     setTimeout(()=>com.remove(), 6000);
 }
 
-// ============================================
-// LÓGICA DE CONTROL DEL LIBRO Y CLICS
-// ============================================
-
 function reproducir(id) { const a=document.getElementById(id); if(a){a.currentTime=0;a.play().catch(()=>{});}}
 
-// Función inteligente para clicks en la página
-function gestionarClic(zonaDiv) {
-    const hoja = zonaDiv.closest('.hoja');
-    
-    // Si la hoja ya fue pasada (está a la izquierda), queremos volver
-    if (hoja.classList.contains('pasada')) {
-        volverHoja(zonaDiv);
+// LÓGICA INTELIGENTE DE CLIC
+function gestionarClic(elementoHoja) {
+    // Si la hoja ya tiene la clase "pasada", significa que está a la izquierda.
+    // Al darle clic, queremos que vuelva a la derecha (retroceder).
+    if (elementoHoja.classList.contains('pasada')) {
+        volverHoja(elementoHoja);
     } 
-    // Si la hoja no ha sido pasada (está a la derecha), queremos avanzar
+    // Si no la tiene, está a la derecha. Queremos pasarla (avanzar).
     else {
-        pasarHoja(zonaDiv);
+        pasarHoja(elementoHoja);
     }
 }
 
@@ -85,22 +80,25 @@ function abrirLibro() {
     }
 }
 
-function pasarHoja(btn) {
-    const h = btn.closest('.hoja'); 
+function pasarHoja(elemento) {
+    // Aceptamos tanto el botón como la hoja misma
+    const h = elemento.closest('.hoja'); 
     h.classList.add('pasada');
     reproducir('snd-hoja');
     
     // Mover Z-index para que se apile bien en la izquierda
     const pasadas = document.querySelectorAll('.hoja.pasada').length;
-    setTimeout(()=>h.style.zIndex = pasadas+500, 500); 
+    // Le damos un z-index alto temporalmente para que pase por encima
+    h.style.zIndex = pasadas + 500; 
 }
 
-function volverHoja(zona) {
-    const h = zona.closest('.hoja'); 
+function volverHoja(elemento) {
+    const h = elemento.closest('.hoja'); 
     h.classList.remove('pasada');
     reproducir('snd-hoja');
     
-    // Restaurar Z-index original para que vuelva a su sitio
+    // Restaurar Z-index original (esto es un truco, el CSS ya maneja el orden base)
+    // Pero para asegurar que vuelva suave, le damos prioridad alta brevemente
     h.style.zIndex = 1000; 
     
     setTimeout(()=>{
@@ -108,6 +106,9 @@ function volverHoja(zona) {
             document.getElementById('libro').classList.remove('abierto');
             document.getElementById('libro').classList.add('cerrado');
             reproducir('snd-cerrar');
+        } else {
+            // Restaurar el z-index original basado en el HTML (opcional pero bueno para orden)
+            // En este diseño simple, dejar que caiga al z-index del CSS funciona bien
         }
     }, 500);
 }
@@ -118,8 +119,8 @@ function cerrarLibroTotal() {
     pasadas.reverse().forEach((h, i) => {
         setTimeout(() => {
             h.classList.remove('pasada');
-            let idx = Array.from(todas).indexOf(h);
-            h.style.zIndex = 100 - idx; 
+            // Restaurar orden visual
+            h.style.zIndex = 100 - Array.from(todas).indexOf(h);
         }, i*200);
     });
     setTimeout(()=>{
@@ -132,3 +133,4 @@ function cerrarLibroTotal() {
 document.addEventListener('DOMContentLoaded', () => {
     iniciarCielo();
 });
+
