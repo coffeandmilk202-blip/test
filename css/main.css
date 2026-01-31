@@ -59,7 +59,6 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 .libro {
     width: var(--ancho); height: var(--alto); position: relative;
     transform-style: preserve-3d; 
-    /* Añadimos transición de width y height para el efecto móvil */
     transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), width 1s, height 1s;
     box-shadow: 0 30px 80px rgba(0,0,0,0.8); pointer-events: auto;
 }
@@ -68,16 +67,11 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 .libro.abierto { transform: translateX(50%); }
 .libro.girado { transform: rotateY(180deg); }
 
-/* CORRECCIÓN BUG VISUAL: Ocultar hojas al girar */
-.libro.girado .hoja { 
-    opacity: 0 !important; 
-    visibility: hidden !important; /* IMPORTANTE: Esto evita que se vea el contenido invertido */
-    pointer-events: none; 
-    transition: opacity 0.2s;
-}
+/* CORRECCIÓN BUG VISUAL */
+.libro.girado .hoja { opacity: 0 !important; visibility: hidden !important; pointer-events: none; transition: opacity 0.2s; }
 .libro.girado .lomo { opacity: 1; }
 
-/* LOMO Y TAPA TRASERA */
+/* COMPONENTES */
 .lomo {
     position: absolute; top: 0; left: 0; width: var(--grosor); height: 100%;
     background: linear-gradient(to right, #050510, #3a1a1a, #050510);
@@ -109,7 +103,6 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 .hoja.portada { background: #000 url('../media/img/portada.jpg') center/cover; border: none; border-right: 4px solid #a88b4a; padding: 0; }
 .hoja.pasada { transform: rotateY(-180deg); filter: blur(2px); pointer-events: none; box-shadow: inset -25px 0 40px rgba(0,0,0,0.1); }
 
-/* PÁGINA AZUL (CELOS) */
 .hoja.azul-triste { 
     background-image: none !important; 
     background-color: #080c14 !important;
@@ -125,22 +118,37 @@ body::after { content: ''; position: absolute; top:0; left:0; width:100%; height
 /* ESTILOS TEXTO */
 h2 { font-family: 'Cinzel'; color: #5a0000; border-bottom: 2px solid var(--dorado); margin-bottom: 15px; font-size: 1.6rem; text-align: center; }
 p { font-family: 'Cormorant Garamond'; font-size: 1.15rem; color: var(--texto-color); font-weight: 600; text-align: justify; line-height: 1.5; margin-bottom: 15px; }
-
-/* Subtítulos para dar aire */
 h3 { font-family: 'Pinyon Script', cursive; color: #800000; font-size: 1.8rem; margin: 10px 0 5px 0; text-align: center; border-bottom: 1px dashed rgba(128, 0, 0, 0.2); }
 .hoja.azul-triste h3 { color: #89cff0; border-bottom-color: rgba(137, 207, 240, 0.3); }
 
 .resaltado { color: #800000; font-weight: 700; font-style: italic; }
 .cita { border-left: 3px solid #e6cfa0; padding-left: 15px; margin: 15px 0; font-style: italic; color: #333; background: rgba(230,207,160,0.1); padding: 10px; border-radius: 5px; }
-.frase-impacto { text-align: center; color: #5a0000; font-weight: bold; font-size: 1.3rem; margin: 20px 0; font-family: 'Cinzel'; border-top: 1px solid rgba(230,207,160,0.5); border-bottom: 1px solid rgba(230,207,160,0.5); padding: 10px 0; }
+.frase-impacto { text-align: center; color: #5a0000; font-weight: bold; font-size: 1.2rem; margin: 20px 0; font-family: 'Cinzel'; border-top: 1px solid rgba(230,207,160,0.5); border-bottom: 1px solid rgba(230,207,160,0.5); padding: 10px 0; }
 .marco-gif { width: 100%; height: 160px; border: 3px double #e6cfa0; margin: 15px 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.05); border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .marco-gif img { width: 100%; height: 100%; object-fit: cover; }
 
-.btn { margin-top: auto; align-self: flex-end; border: 2px solid #5a0000; color: #5a0000; padding: 8px 20px; font-family: 'Cinzel'; font-weight: bold; background: transparent; cursor: pointer; }
+/* BOTONES Y ZONAS CLICABLES (ARREGLO DEL BUG) */
+.btn { 
+    margin-top: auto; align-self: flex-end; 
+    border: 2px solid #5a0000; color: #5a0000; padding: 8px 20px; 
+    font-family: 'Cinzel'; font-weight: bold; background: transparent; cursor: pointer; 
+    position: relative; z-index: 50; /* Z-INDEX ALTO para que siempre se pueda dar clic */
+}
 .btn-azul { border-color: #89cff0; color: #89cff0; }
 .btn-azul:hover { background: #89cff0; color: #000; }
-.zona-volver { position: absolute; top:0; right:0; width: 60px; height: 100%; cursor: pointer; z-index: 10; }
-.num-pag { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #888; font-family: 'Cinzel'; font-size: 0.8rem; pointer-events: none; letter-spacing: 2px; }
+
+/* NUEVA ZONA INTELIGENTE (Cubre toda la página pero deja pasar clic al botón por z-index) */
+.zona-clic-inteligente {
+    position: absolute;
+    top: 0; 
+    right: 0; /* Siempre anclado a la derecha del contenedor hoja */
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Menor que el botón (50) pero mayor que el fondo */
+    cursor: pointer;
+}
+
+.num-pag { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #888; font-family: 'Cinzel'; font-size: 0.9rem; pointer-events: none; letter-spacing: 2px; }
 .num-pag::before { content: '• '; color: var(--dorado); } .num-pag::after { content: ' •'; color: var(--dorado); }
 .hoja.azul-triste .num-pag { color: #5d8aa8; }
 
@@ -149,31 +157,11 @@ h3 { font-family: 'Pinyon Script', cursive; color: #800000; font-size: 1.8rem; m
 .btn-control { background: transparent; border: 1px solid var(--dorado); color: var(--dorado); padding: 10px 20px; font-family: 'Cinzel'; cursor: pointer; border-radius: 20px; transition: 0.3s; }
 .btn-control:hover { background: var(--dorado); color: #000; }
 
-/* ================================================= */
-/* SOLUCIÓN MÓVIL: EL LIBRO CAMBIA DE TAMAÑO DINÁMICAMENTE */
-/* ================================================= */
 @media (max-width: 768px) {
-    :root { 
-        /* Dimensiones base para el estado ABIERTO (pequeño para que quepan 2 páginas) */
-        --ancho: 45vw; 
-        --alto: 65vw; 
-        --grosor: 15px; 
-    }
-
-    /* ESTADO CERRADO: El libro se hace GRANDE para lucir la portada */
-    .libro.cerrado {
-        width: 80vw !important;  /* Portada ancha */
-        height: 120vw !important; /* Portada alta */
-    }
+    :root { --ancho: 45vw; --alto: 65vw; --grosor: 15px; }
+    .libro.cerrado { width: 80vw !important; height: 120vw !important; }
+    .libro.abierto { width: 45vw !important; height: 65vw !important; transform: translateX(50%) !important; }
     
-    /* ESTADO ABIERTO: El libro se encoge para que quepan las páginas abiertas */
-    .libro.abierto {
-        width: 45vw !important;
-        height: 65vw !important;
-        transform: translateX(50%) !important;
-    }
-
-    /* Ajustes de TEXTO para que sea legible en el libro pequeño */
     .hoja { padding: 10px; }
     p { font-size: 0.65rem; line-height: 1.25; margin-bottom: 6px; }
     h2 { font-size: 0.9rem; margin-bottom: 5px; }
@@ -181,26 +169,14 @@ h3 { font-family: 'Pinyon Script', cursive; color: #800000; font-size: 1.8rem; m
     .frase-impacto { font-size: 0.75rem; margin: 10px 0; padding: 5px 0; }
     .cita { font-size: 0.7rem; padding: 5px; margin: 5px 0; }
     .marco-gif { height: 80px; margin: 5px 0; }
-    
-    /* Botones más pequeños */
     .btn { padding: 3px 6px; font-size: 0.6rem; border-width: 1px; }
     
-    /* Controles abajo */
-    .barra-controles { 
-        width: 95%; 
-        padding: 5px; 
-        gap: 5px; 
-        bottom: 10px;
-        background: rgba(0,0,0,0.9);
-    }
-    .btn-control { 
-        font-size: 0.6rem; 
-        padding: 5px; 
-        flex: 1; 
-    }
+    .barra-controles { width: 95%; padding: 5px; gap: 5px; bottom: 10px; background: rgba(0,0,0,0.9); }
+    .btn-control { font-size: 0.6rem; padding: 5px; flex: 1; }
     
-    /* Tapa trasera ajuste */
+    .dedicatoria-final { width: 90%; }
     .titulo-dedicatoria { font-size: 1.5rem; }
     .dedicatoria-final p { font-size: 0.8rem; }
 }
+
 
