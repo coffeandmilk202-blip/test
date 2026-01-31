@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div id="cielo-interactivo"></div>
+    <audio id="snd-hoja" src="https://www.soundjay.com/books/sounds/book-page-turning-03.mp3"></audio>
+    <audio id="snd-abrir" src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>
+    <audio id="snd-cerrar" src="https://www.soundjay.com/books/sounds/book-close-01.mp3"></audio>
+
+    <div class="escenario">
+        <div class="libro cerrado" id="libro">
+
+            <div class="lomo" onclick="girarLibroEntero()"></div>
+            <div class="tapa-trasera" onclick="girarLibroEntero()">
+                <div class="dedicatoria-final">
+                    <p class="titulo-dedicatoria">Para ti...</p>
+                    <p>Gracias por ser mi coincidencia más bonita.</p>
+                    <p class="fecha">Siempre Juntos</p>
+                </div>
+            </div>
+
+            <div class="hoja portada" style="z-index: 90;" onclick="abrirLibro()">
+                <div class="broche"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 89;">
+                <h2>Interlinked</h2>
+                <ul style="list-style: none; padding: 0; margin-top: 40px; font-size: 1.3rem; font-weight: bold; color: #1a0505;">
+                    <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc;">I. El Encuentro</li>
+                    <li style="color: #999;">(Próximamente...)</li>
+                </ul>
+                <button class="btn" onclick="pasarHoja(this)">Leer &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 88;">
+                <h2>I. El Encuentro</h2>
+                <p>El día que te conocí no sabría cómo describirlo. Eran alrededor de las cuatro de la mañana y yo estaba jugando, como cualquier otra noche.</p>
+                <div class="marco-gif">
+                    <img src="media/img/gaming.gif" alt="Gaming" onerror="this.style.display='none'">
+                </div>
+                <p>Un chico se me acercó y comenzó a hablarme, riéndose. Eso me causó gracia e intriga al mismo tiempo. Me preguntaste de dónde era y yo te respondí groseramente.</p>
+                <div class="num-pag">- 1 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 87;">
+                <p>Ese día, cuando vos me hablaste, <span class="resaltado">me sentía un personaje</span>; Y yo, sin darme cuenta, empecé a asumir el papel: exageré comentarios, actitudes, como si estuviera interpretando una versión más cansona de mí misma.</p>
+                <p>Te me acercaste risueño, y por alguna razón había algo en tu risa que no quería perder. Recuerdo que conversamos por un rato. No fue una charla profunda ni trascendental.</p>
+                <div class="num-pag">- 2 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 86;">
+                <p>Era tarde, el cansancio se hacía sentir, y no sé si fue eso, pero por alguna razón sentí algo cuando te vi venir hacia mí.</p>
+                <p class="frase-impacto">"Como si mi corazón te amara desde el primer instante que te vio pasar."</p>
+                <p>Esa noche fue tan extraña, como si no quisiera que se acabara nunca. Cuando llegó el momento de irme a dormir, apareció una incomodidad extraña.</p>
+                <div class="num-pag">- 3 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 85;">
+                <p>No quería irme, aunque no supiera explicar por qué. Decir que me iba no se sintió como un cierre natural, sino como una interrupción. Por primera vez, me cruzó la idea de que no volveríamos a hablar, y ese pensamiento me inquietó más de lo que estaba dispuesta a admitir.</p>
+                <div class="cita">
+                    Pero vos dijiste:<br>— Agregame entonces.<br>— ¿Para qué? — respondí.
+                </div>
+                <div class="num-pag">- 4 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 84;">
+                <p>Y sin embargo, mi corazón me latía a mil. Del otro lado sentí una satisfacción difícil de explicar, como si ese gesto mínimo hubiera desplazado algo dentro de mí.</p>
+                <div class="marco-gif">
+                    <img src="media/img/solicitud.gif" alt="Solicitud" onerror="this.style.display='none'">
+                </div>
+                <p>Me mandaste la solicitud y me fui. Me fui con una sensación extraña en el pecho, pero con una sonrisa que me salía sola.</p>
+                <div class="num-pag">- 5 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 83;">
+                <p><span class="resaltado">Aceptar esa solicitud se sentía como si hubiese marcado un antes y un después.</span> No le puse nombre a nada. Solo sabía que algo había quedado abierto.</p>
+                <p>Tengo que confesar que los próximos días, entraba a jugar a propósito cada vez que te veía conectado y por alguna razón siempre funcionaba.</p>
+                <p>Cuando me seguías, la felicidad que sentía no tenía nombre.</p>
+                <div class="num-pag">- 6 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 82;">
+                <p>Automáticamente entraba en mi papel de humorista, me volvía más graciosa, más exagerada, <span class="resaltado">como si fuese una payasita</span>, y lejos de incomodarme, me gustaba serlo.</p>
+                <p>Había algo en hacerte reír que me impulsaba a seguir intentando que eso no se desvanezca, porque por alguna razón el que te rías me generaba ganas de seguir diciendo chistes para que nunca dejes de hacerlo.</p>
+                <div class="num-pag">- 7 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 81;">
+                <p>No importaba la hora en la que jugáramos. Si yo estaba ocupada, empezaba a postergar cosas, a dejar tareas para después, con tal de poder estar con vos.</p>
+                <p>Casi nunca coincidíamos de día; la mayoría de las veces era de noche, cuando todo se aquieta y, dicen, uno se vuelve más vulnerable.</p>
+                <p>Y tal vez era cierto, porque en esas horas yo me permitía sentir sin reservas.</p>
+                <div class="num-pag">- 8 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 80;">
+                <p>Mi corazón, por alguna razón, se sentía distinto. Más delicado. Como si hubiera perdido una capa de protección que normalmente me mantenía a resguardo. Era frágil, como un cristal, pero al mismo tiempo liviano.</p>
+                <div class="marco-gif">
+                    <img src="media/img/vulnerable.gif" alt="Vulnerable" onerror="this.style.display='none'">
+                </div>
+                <p>Todo se volvía más sensible. Las palabras tenían otro peso, los silencios duraban más de lo habitual.</p>
+                <div class="num-pag">- 9 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 79;">
+                <p>Había algo en el aire, algo palpable, una tensión suave que no incomodaba, pero que tampoco pasaba desapercibida.</p>
+                <p>Como si el espacio entre nosotros estuviera cargado de algo que todavía no se decía, pero ya se sentía. Y, aun así, no había miedo. No era ansiedad ni una expectativa concreta. Era una apertura nueva, una forma distinta de estar.</p>
+                <div class="num-pag">- 10 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 78;">
+                <p>Las conversaciones fluían con naturalidad, los silencios no pesaban y cada momento compartido tenía un valor íntimo, propio, como si bastara con estar ahí.</p>
+                <p class="frase-impacto">"Me sentía cómoda. Extrañamente protegida, incluso sin garantías."</p>
+                <p>Estar cerca tuyo me permitía bajar defensas sin darme cuenta, confiar sin preguntas, quedarme sin pensar demasiado en el después.</p>
+                <div class="num-pag">- 11 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 77;">
+                <p>No éramos nada. Y, en teoría, eso debería haber sido simple.</p>
+                <p>No existían promesas, ni explicaciones pendientes, ni derechos implícitos. No había acuerdos ni futuros insinuados. Éramos conversaciones que comenzaban sin horario y se disolvían cuando el cansancio se imponía.</p>
+                <div class="num-pag">- 12 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 76;">
+                <p>Sin embargo, cada vez que tu nombre aparecía en la pantalla, algo en mí se reordenaba. Por el momento no era una euforia evidente ni una ansiedad declarada; era más sutil. Como si todo encontrara un nuevo eje, como si el día se acomodara levemente alrededor de esa presencia.</p>
+                <p>Yo muchas veces fingía indiferencia. Contestaba más tarde de lo que quería, simulaba estar ocupada.</p>
+                <div class="num-pag">- 13 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 75;">
+                <p>Pero la verdad se imponía sola: <span class="resaltado">te esperaba.</span></p>
+                <p>Esperaba que escribieras, que aparecieras sin aviso, que me hablaras como si el mundo se redujera a ese intercambio. Y, al mismo tiempo, me reprochaba esa espera.</p>
+                <p>Porque ese desinterés construido se desmoronaba en segundos. Porque me ablandaba al hablar con vos.</p>
+                <div class="num-pag">- 14 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 74;">
+                <p>Había una parte de mí —esa que ama sin defensas— que ya no veía límites donde yo intentaba imponerlos. Todavía no sabía qué lugar ocupabas en mi vida. Pero ya había empezado a abrirte espacio.</p>
+                <p>Poco a poco, empezabas a volverte costumbre. Y yo siempre temí a las costumbres que duelen. Aun así, no intenté detenerlo. No puse freno. Dejé que ocurriera.</p>
+                <div class="num-pag">- 15 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja azul-triste" style="z-index: 73;">
+                <h2>La Sospecha</h2>
+                <p>Esa sensación en el pecho nunca se desvaneció; por el contrario, con cada día que pasaba se volvía más intensa, más difícil de ignorar.</p>
+                <p>Recuerdo que, a veces, hacía chistes sobre que no jugábamos porque estabas con tu moza, o comentarios parecidos. Los decía en tono liviano, casi como una broma sin importancia, pero la verdad era otra: necesitaba saber si estabas con alguien.</p>
+                <div class="num-pag" style="color:#5d8aa8">- 16 -</div>
+                <button class="btn btn-azul" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja azul-triste" style="z-index: 72;">
+                <p>Había algo en mí que buscaba respuestas incluso cuando fingía no quererlas. Vos, muchas veces, reías. Otras, la nombrabas de forma casual en tus respuestas. Nunca me dijiste nada de manera directa, pero yo lo sentía.</p>
+                <p>Sentía la presencia de otra persona, aunque no tuviera certezas. Era una intuición persistente, una incomodidad silenciosa que se instalaba sin pedir permiso.</p>
+                <div class="marco-gif" style="border-color: #5d8aa8;">
+                    <img src="media/img/celos.gif" alt="Celos" onerror="this.style.display='none'">
+                </div>
+                <div class="num-pag" style="color:#5d8aa8">- 17 -</div>
+                <button class="btn btn-azul" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja azul-triste" style="z-index: 71;">
+                <p>Entré a tus amigos. Había varias chicas, nombres y perfiles que miré sin pensar demasiado. Pero entre todas, hubo una que me llamó un poco más la atención. No sabría decir por qué.</p>
+                <p>No tenía pruebas ni razones claras, solo esa intuición incómoda de que tal vez era ella. Y ahí volvió esa sensación en el pecho. Esta vez no era lo mismo. No era emoción ni ilusión.</p>
+                <p style="text-align: center; color: #ff9999; font-weight: bold; font-style: italic;">"No dolía por amor, dolía por celos."</p>
+                <div class="num-pag" style="color:#5d8aa8">- 18 -</div>
+                <button class="btn btn-azul" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 70;">
+                <h2>El Sentimiento</h2>
+                <p>El sentimiento creció tanto, se volvió tan persistente, que dejé de ignorarlo. Dejé de fingir que no pasaba nada y empecé a vivirlo.</p>
+                <p>Mi corazón te adoraba. Tenía muchas ganas de decirte lo que sentía. Quería que fueras mi novio, quería que seamos algo más que amigos. Aun cuando lleváramos menos de un mes conociéndonos.</p>
+                <div class="num-pag">- 19 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 69;">
+                <p>Necesitaba liberar eso que tenía atrapado en el pecho, porque la intensidad era tal que, por momentos, dolía. Cada vez que te escribía, mis manos temblaban.</p>
+                <p>Estar con vos me ponía nerviosa de una forma que no sabía disimular. Y, aun así, me hacía la fuerte. Fingía calma, cuando en realidad mi corazón se ablandaba cada vez que estaba cerca tuyo.</p>
+                <div class="num-pag">- 20 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 68;">
+                <p>Y aunque intentara hacerme la desentendida, la verdad es que desde el primer minuto me sentí así. Te quise así, sin defensas. <span class="resaltado">Te adoré así, sin medida, sin tiempo.</span></p>
+                <p>Tenía miedo de no ser correspondida, porque, dentro de todo, no actuabas con el mismo interés que yo. A veces parecía que sí, otras no tanto.</p>
+                <p>Yo necesitaba algo más directo. Algo que no tuviera que interpretarse ni adivinarse.</p>
+                <div class="num-pag">- 21 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 67;">
+                <p>Y, aun así, cada vez que estábamos juntos, volvía a aparecer esa tensión. Una cercanía que se sentía en el aire, constante, evidente.</p>
+                <p>La química que tenía con vos no fue solo llevarme bien o sentir atracción. Fue algo mucho más profundo, más inmediato, casi imposible de explicar con lógica.</p>
+                <p>Fue como si mi cuerpo lo hubiera reconocido antes de que mi cabeza pudiera entenderlo.</p>
+                <div class="num-pag">- 22 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 66;">
+                <p>Hablar con vos no requería esfuerzo. Las conversaciones se daban solas, los silencios no incomodaban y había una sincronía extraña en la manera en la que pensábamos, reaccionábamos y sentíamos.</p>
+                <p>A veces alcanzaba una risa, una frase, una pausa, para entendernos por completo. Era como si habláramos el mismo idioma emocional.</p>
+                <div class="num-pag">- 23 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 65;">
+                <p>Esa química era tan intensa que, por momentos, parecía ir más allá de lo real. <span class="resaltado">Como si no nos estuviéramos conociendo, sino recordando.</span></p>
+                <p>Había una sensación constante de familiaridad, de cercanía, de encaje. Todo se sentía inevitable, como si nuestras historias, aunque distintas, hubieran encontrado un punto exacto donde coincidir.</p>
+                <div class="num-pag">- 24 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 64;">
+                <p>No era solo deseo ni ilusión. Era calma y vértigo al mismo tiempo. Era sentirme en el lugar correcto, con la persona correcta, aun sin saber qué vendría después.</p>
+                <p>Una noche, entre tantas, uno de los dos confesó que se sentía extraño con la presencia del otro. Yo recuerdo haber empezado a describir esa sensación: el corazón latiendo tan rápido que casi duele, la adrenalina mezclada con alivio.</p>
+                <div class="num-pag">- 25 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 63;">
+                <p>Vos asentiste. Dijiste que también te resultaba raro, que era un sentimiento nuevo, que nunca te había pasado. Yo dije lo mismo. Y recuerdo con exactitud lo que ocurrió en mi cuerpo cuando entendí que vos sentías lo mismo. El pecho se me aflojó, el corazón se alivió.</p>
+                <p>Recuerdo que esa noche nos quedamos despiertos hasta las seis de la mañana hablando de eso: de cuánto tiempo lo habíamos estado guardando.</p>
+                <div class="num-pag">- 26 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 62;">
+                <p>Y nos dimos cuenta de que, desde el primer día, ambos habíamos quedado flechados.</p>
+                <div class="cita">
+                    “Siento que te amo”, dijiste vos.
+                </div>
+                <p>Y yo no dudé. Lo sentía desde hacía días, desde ese primer temblor en el pecho que no supe ignorar. Te respondí que a mí me pasaba lo mismo.</p>
+                <div class="num-pag">- 27 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 61;">
+                <p>Tenía ganas de decirte que te amaba y no dejar de hacerlo nunca, como si al fin se hubiera liberado algo que llevaba tiempo atado. Y aunque racionalmente sabía que había sido poco, la sensación era tan intensa que se sentía eterna.</p>
+                <p>Fueron días de conocernos, y aún más noches entregados a lo mismo. A repetir cuánto nos anhelábamos, a reconocer lo tranquilos que nos hacía la presencia del otro.</p>
+                <div class="num-pag">- 28 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Siguiente &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja" style="z-index: 60;">
+                <h2>Certezas</h2>
+                <p>Pasábamos horas y horas juntos, volviendo una y otra vez a esas certezas, como si necesitáramos reafirmarlas. Y se sentía bien. Muy bien.</p>
+                <p>El simple hecho de estar con vos calmaba todo dentro de mí, como si no necesitara nada más que eso: compartir el tiempo, la charla, la cercanía.</p>
+                <div class="marco-gif">
+                    <img src="media/img/amor.gif" alt="Amor" onerror="this.style.display='none'">
+                </div>
+                <p>Como si, por un rato, nada más hiciera falta, <span class="resaltado">solamente vos.</span></p>
+                <div class="num-pag">- Fin Cap. 1 -</div>
+                <button class="btn" onclick="pasarHoja(this)">Continuará... &rarr;</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+            <div class="hoja final" style="z-index: 59;">
+                <h2>Continuará...</h2>
+                <p>Nuestra historia se sigue escribiendo en las estrellas.</p>
+                <button class="btn" onclick="cerrarLibroTotal()">Cerrar Libro ↺</button>
+                <div class="zona-volver" onclick="volverHoja(this)"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="barra-controles">
+        <button class="btn-control" onclick="abrirLibro()">Abrir</button>
+        <button class="btn-control" onclick="girarLibroEntero()">Ver Dedicatoria</button>
+        <button class="btn-control" onclick="cerrarLibroTotal()">Cerrar</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
