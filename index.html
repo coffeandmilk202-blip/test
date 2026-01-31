@@ -31,17 +31,16 @@
                 <div class="broche"></div>
             </div>
 
-            <div class="hoja" style="z-index: 99;">
+            <div class="hoja" style="z-index: 99;" onclick="gestionarClic(this)">
                 <h2>Interlinked</h2>
                 <ul style="list-style: none; padding: 0; margin-top: 20px; font-size: 1.1rem; font-weight: bold; color: #1a0505;">
                     <li style="margin-bottom: 10px; border-bottom: 1px dashed #ccc;">I. El Encuentro</li>
                     <li style="color: #999;">(Próximamente...)</li>
                 </ul>
-                <button class="btn" onclick="pasarHoja(this)">Leer &rarr;</button>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
+                <button class="btn" onclick="event.stopPropagation(); pasarHoja(this)">Leer &rarr;</button>
             </div>
 
-            <div class="hoja" style="z-index: 98;">
+            <div class="hoja" style="z-index: 98;" onclick="gestionarClic(this)">
                 <h2>I. El Encuentro</h2>
                 <p>El día que te conocí no sabría cómo describirlo. Eran alrededor de las cuatro de la mañana y yo estaba jugando, como cualquier otra noche.</p>
                 <div class="marco-gif">
@@ -49,67 +48,59 @@
                 </div>
                 <p>Un chico se me acercó y comenzó a hablarme, riéndose. Eso me causó gracia e intriga al mismo tiempo.</p>
                 <div class="num-pag">1</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 97;">
+            <div class="hoja" style="z-index: 97;" onclick="gestionarClic(this)">
                 <p>Me preguntaste de dónde era y yo te respondí groseramente.</p>
                 <p>Ese día, cuando vos me hablaste, <span class="resaltado">me sentía un personaje</span>. Y yo, sin darme cuenta, empecé a asumir el papel: exageré comentarios, actitudes, como si estuviera interpretando una versión más cansona de mí misma.</p>
                 <div class="num-pag">2</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 96;">
+            <div class="hoja" style="z-index: 96;" onclick="gestionarClic(this)">
                 <p>Te me acercaste risueño, y por alguna razón había algo en tu risa que no quería perder. Recuerdo que conversamos por un rato. No fue una charla profunda ni trascendental.</p>
                 <p>Era tarde, el cansancio se hacía sentir, y no sé si fue eso, pero por alguna razón sentí algo cuando te vi venir hacia mí.</p>
                 <p class="frase-impacto">"Como si mi corazón te amara desde el primer instante que te vio pasar."</p>
                 <div class="num-pag">3</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 95;">
+            <div class="hoja" style="z-index: 95;" onclick="gestionarClic(this)">
                 <p>Esa noche fue tan extraña, como si no quisiera que se acabara nunca. Cuando llegó el momento de irme a dormir, apareció una incomodidad extraña.</p>
                 <p>No quería irme, aunque no supiera explicar por qué. Decir que me iba no se sintió como un cierre natural, sino como una interrupción.</p>
                 <p>Por primera vez, me cruzó la idea de que no volveríamos a hablar, y ese pensamiento me inquietó.</p>
                 <div class="num-pag">4</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 94;">
+            <div class="hoja" style="z-index: 94;" onclick="gestionarClic(this)">
                 <div class="cita">
                     Pero vos dijiste:<br>— Agregame entonces.<br>— ¿Para qué? — respondí.
                 </div>
                 <p>Y sin embargo, mi corazón me latía a mil. Del otro lado sentí una satisfacción difícil de explicar, como si ese gesto mínimo hubiera desplazado algo dentro de mí.</p>
                 <div class="num-pag">5</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 93;">
+            <div class="hoja" style="z-index: 93;" onclick="gestionarClic(this)">
                 <p>Me mandaste la solicitud y me fui. Me fui con una sensación extraña en el pecho, pero con una sonrisa que me salía sola.</p>
                 <div class="marco-gif">
                     <img src="media/img/solicitud.gif" alt="Solicitud" onerror="this.style.display='none'">
                 </div>
                 <p><span class="resaltado">Aceptar esa solicitud se sentía como si hubiese marcado un antes y un después.</span> No le puse nombre a nada. Solo sabía que algo había quedado abierto.</p>
                 <div class="num-pag">6</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 92;">
+            <div class="hoja" style="z-index: 92;" onclick="gestionarClic(this)">
                 <h3>La Rutina</h3>
                 <p>Tengo que confesar que los próximos días, entraba a jugar a propósito cada vez que te veía conectado y por alguna razón siempre funcionaba.</p>
                 <p>Cuando me seguías, la felicidad que sentía no tenía nombre. Automáticamente entraba en mi papel de humorista, me volvía más graciosa, más exagerada, <span class="resaltado">como si fuese una payasita</span>.</p>
                 <div class="num-pag">7</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 91;">
+            <div class="hoja" style="z-index: 91;" onclick="gestionarClic(this)">
                 <p>Lejos de incomodarme, me gustaba serlo. Había algo en hacerte reír que me impulsaba a seguir intentando que eso no se desvanezca, porque por alguna razón el que te rías me generaba ganas de seguir diciendo chistes para que nunca dejes de hacerlo.</p>
                 <p>No importaba la hora en la que jugáramos. Si yo estaba ocupada, empezaba a postergar cosas con tal de poder estar con vos.</p>
                 <div class="num-pag">8</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 90;">
+            <div class="hoja" style="z-index: 90;" onclick="gestionarClic(this)">
                 <p>Casi nunca coincidíamos de día; la mayoría de las veces era de noche, cuando todo se aquieta y, dicen, uno se vuelve más vulnerable.</p>
                 <p>Y tal vez era cierto, porque en esas horas yo me permitía sentir sin reservas.</p>
                 <p>Mi corazón, por alguna razón, se sentía distinto. Más delicado. Como si hubiera perdido una capa de protección.</p>
@@ -117,64 +108,56 @@
                     <img src="media/img/vulnerable.gif" alt="Noche" onerror="this.style.display='none'">
                 </div>
                 <div class="num-pag">9</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 89;">
+            <div class="hoja" style="z-index: 89;" onclick="gestionarClic(this)">
                 <p>Era frágil, como un cristal, pero al mismo tiempo liviano. Todo se volvía más sensible. Las palabras tenían otro peso, los silencios duraban más.</p>
                 <p>Había algo en el aire, algo palpable, una tensión suave que no incomodaba. Como si el espacio entre nosotros estuviera cargado de algo que todavía no se decía, pero ya se sentía.</p>
                 <div class="num-pag">10</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 88;">
+            <div class="hoja" style="z-index: 88;" onclick="gestionarClic(this)">
                 <p>No era ansiedad ni expectativa. Era una apertura nueva. Las conversaciones fluían con naturalidad, como si bastara con estar ahí.</p>
                 <p class="frase-impacto">"Me sentía cómoda. Extrañamente protegida, incluso sin garantías."</p>
                 <p>Estar cerca tuyo me permitía bajar defensas sin darme cuenta, confiar sin preguntas. No había esfuerzo ni cálculo; solo la sensación de estar donde quería estar.</p>
                 <div class="num-pag">11</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 87;">
+            <div class="hoja" style="z-index: 87;" onclick="gestionarClic(this)">
                 <h3>Sin Nombre</h3>
                 <p>No éramos nada. Y, en teoría, eso debería haber sido simple. No existían promesas, ni explicaciones pendientes.</p>
                 <p>Éramos conversaciones que comenzaban sin horario. Encuentros verbales que surgían sin anuncio. Algo liviano, sin nombre. O eso era lo que parecía.</p>
                 <div class="num-pag">12</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 86;">
+            <div class="hoja" style="z-index: 86;" onclick="gestionarClic(this)">
                 <p>Sin embargo, cada vez que tu nombre aparecía en la pantalla, algo en mí se reordenaba. Como si todo encontrara un nuevo eje.</p>
                 <p>Yo muchas veces fingía indiferencia. Contestaba más tarde, simulaba estar ocupada. Pero la verdad se imponía sola: <span class="resaltado">te esperaba.</span></p>
                 <p>Esperaba que escribieras, que aparecieras sin aviso, que me hablaras como si el mundo se redujera a ese intercambio.</p>
                 <div class="num-pag">13</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 85;">
+            <div class="hoja" style="z-index: 85;" onclick="gestionarClic(this)">
                 <p>Me reprochaba esa espera. Porque ese desinterés construido se desmoronaba en segundos. Porque me ablandaba al hablar con vos.</p>
                 <p>Había una parte de mí —esa que ama sin defensas— que ya no veía límites. Todavía no sabía qué lugar ocupabas en mi vida. Pero ya había empezado a abrirte espacio.</p>
                 <div class="num-pag">14</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 84;">
+            <div class="hoja" style="z-index: 84;" onclick="gestionarClic(this)">
                 <p>Poco a poco, empezabas a volverte costumbre. Y yo siempre temí a las costumbres que duelen. A esas presencias que se instalan sin pedir permiso.</p>
                 <p>Aun así, no intenté detenerlo. No puse freno. Dejé que ocurriera.</p>
                 <div class="num-pag">15</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja azul-triste" style="z-index: 83;">
+            <div class="hoja azul-triste" style="z-index: 83;" onclick="gestionarClic(this)">
                 <h3>La Intuición</h3>
                 <p>Esa sensación en el pecho nunca se desvaneció; por el contrario, con cada día que pasaba se volvía más intensa.</p>
                 <p>Recuerdo que, a veces, hacía chistes sobre que no jugábamos porque estabas con tu "moza". Los decía en tono liviano, pero la verdad era otra: necesitaba saber si estabas con alguien.</p>
                 <p>Había algo en mí que buscaba respuestas incluso cuando fingía no quererlas.</p>
                 <div class="num-pag" style="color:#5d8aa8">16</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja azul-triste" style="z-index: 82;">
+            <div class="hoja azul-triste" style="z-index: 82;" onclick="gestionarClic(this)">
                 <p>Vos, muchas veces, reías. Otras, la nombrabas de forma casual. Nunca me dijiste nada directo, pero yo lo sentía.</p>
                 <p>Entré a tus amigos. Había varias chicas, pero hubo una que me llamó un poco más la atención. No sabría decir por qué.</p>
                 <div class="marco-gif" style="border-color: #5d8aa8;">
@@ -182,74 +165,65 @@
                 </div>
                 <p>No fue algo concreto, más bien una sensación leve, como una sospecha que apareció y se quedó ahí.</p>
                 <div class="num-pag" style="color:#5d8aa8">17</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja azul-triste" style="z-index: 81;">
+            <div class="hoja azul-triste" style="z-index: 81;" onclick="gestionarClic(this)">
                 <p>No tenía pruebas ni razones claras, solo esa intuición incómoda de que tal vez era ella. Y ahí volvió esa sensación en el pecho.</p>
                 <p>Esta vez no era lo mismo. No era emoción ni ilusión. Era una molestia silenciosa, un nudo que aparecía sin avisar.</p>
                 <p class="frase-impacto" style="color: #ff9999; border-color: #5d8aa8;">"No dolía por amor, dolía por celos."</p>
                 <div class="num-pag" style="color:#5d8aa8">18</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 80;">
+            <div class="hoja" style="z-index: 80;" onclick="gestionarClic(this)">
                 <h3>El Despertar</h3>
                 <p>El sentimiento creció tanto que dejé de ignorarlo. Dejé de fingir que no pasaba nada y empecé a vivirlo. Mi corazón te adoraba.</p>
                 <p>Tenía muchas ganas de decirte lo que sentía. Quería que fueras mi novio, aunque lleváramos menos de un mes.</p>
                 <p>Necesitaba liberar eso que tenía atrapado, porque la intensidad era tal que, por momentos, dolía.</p>
                 <div class="num-pag">19</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 79;">
+            <div class="hoja" style="z-index: 79;" onclick="gestionarClic(this)">
                 <p>Cada vez que te escribía, mis manos temblaban. Estar con vos me ponía nerviosa. Y, aun así, me hacía la fuerte.</p>
                 <p>Y aunque intentara hacerme la desentendida, te quise así, sin defensas. <span class="resaltado">Te adoré así, sin medida.</span></p>
                 <p>Tenía miedo de no ser correspondida. A veces me dabas señales, otras no tanto. Yo necesitaba algo más directo.</p>
                 <div class="num-pag">20</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 78;">
+            <div class="hoja" style="z-index: 78;" onclick="gestionarClic(this)">
                 <p>Y, aun así, cada vez que estábamos juntos, volvía a aparecer esa tensión. La química que tenía con vos no fue solo atracción. Fue algo mucho más profundo.</p>
                 <p>Fue como si mi cuerpo lo hubiera reconocido antes de que mi cabeza pudiera entenderlo. Desde el primer momento todo fluyó con naturalidad.</p>
                 <p>Hablar con vos no requería esfuerzo. Las conversaciones se daban solas.</p>
                 <div class="num-pag">21</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 77;">
+            <div class="hoja" style="z-index: 77;" onclick="gestionarClic(this)">
                 <p>A veces alcanzaba una risa para entendernos. Era como si habláramos el mismo idioma emocional.</p>
                 <p>Esa química era tan intensa que parecía ir más allá de lo real. <span class="resaltado">Como si no nos estuviéramos conociendo, sino recordando.</span></p>
                 <p>Había una sensación constante de familiaridad, de cercanía, de encaje. Todo se sentía inevitable.</p>
                 <div class="num-pag">22</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 76;">
+            <div class="hoja" style="z-index: 76;" onclick="gestionarClic(this)">
                 <p>No era solo deseo ni ilusión. Era calma y vértigo al mismo tiempo. Era sentirme en el lugar correcto, con la persona correcta.</p>
                 <h3>La Verdad</h3>
                 <p>Una noche, confesamos que nos sentíamos extraños. Vos dijiste que también te pasaba. Mi pecho se aflojó, como si se hubiera asegurado algo incierto.</p>
                 <div class="num-pag">23</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 75;">
+            <div class="hoja" style="z-index: 75;" onclick="gestionarClic(this)">
                 <p>Nos quedamos despiertos hasta las seis de la mañana hablando de eso. Y nos dimos cuenta de que, desde el primer día, ambos habíamos quedado flechados.</p>
                 <div class="cita">“Siento que te amo”, dijiste vos.</div>
                 <p>Y yo no dudé. Lo sentía desde hacía días. Tenía ganas de decirte que te amaba y no dejar de hacerlo nunca.</p>
                 <div class="num-pag">24</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 74;">
+            <div class="hoja" style="z-index: 74;" onclick="gestionarClic(this)">
                 <p>Aunque racionalmente sabía que había sido poco, la sensación era tan intensa que se sentía eterna.</p>
                 <p>Fueron días de conocernos, y aún más noches entregados a lo mismo. A repetir cuánto nos anhelábamos, a reconocer lo tranquilos que nos hacía la presencia del otro.</p>
                 <div class="num-pag">25</div>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
             </div>
 
-            <div class="hoja" style="z-index: 73;">
+            <div class="hoja" style="z-index: 73;" onclick="gestionarClic(this)">
                 <h2>Certezas</h2>
                 <p>Pasábamos horas y horas juntos, volviendo una y otra vez a esas certezas. Y se sentía bien. Muy bien.</p>
                 <div class="marco-gif">
@@ -257,15 +231,13 @@
                 </div>
                 <p>El simple hecho de estar con vos calmaba todo dentro de mí. Como si, por un rato, nada más hiciera falta, <span class="resaltado">solamente vos.</span></p>
                 <div class="num-pag">- Fin Cap. 1 -</div>
-                <button class="btn" onclick="pasarHoja(this)">Continuará... &rarr;</button>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
+                <button class="btn" onclick="event.stopPropagation(); pasarHoja(this)">Continuará... &rarr;</button>
             </div>
 
             <div class="hoja final" style="z-index: 72;">
                 <h2>Continuará...</h2>
                 <p>Nuestra historia se sigue escribiendo en las estrellas.</p>
-                <button class="btn" onclick="cerrarLibroTotal()">Cerrar Libro ↺</button>
-                <div class="zona-clic-inteligente" onclick="gestionarClic(this)"></div>
+                <button class="btn" onclick="event.stopPropagation(); cerrarLibroTotal()">Cerrar Libro ↺</button>
             </div>
 
         </div>
@@ -280,3 +252,4 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+
