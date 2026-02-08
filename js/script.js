@@ -1,4 +1,4 @@
-/* js/script.js - VERSIÓN FINAL CON CAMBIO DE MÚSICA */
+/* js/script.js - VERSIÓN FINAL (TODOS LOS CAPÍTULOS + FINAL) */
 
 const mensajes = [
     "Sos mi lugar favorito ✨", "Te pienso y sonrío ❤️", "Sos mi elección diaria 💍",
@@ -83,37 +83,43 @@ function abrirLibro() {
         // Iniciar música Capítulo 1
         const musica = document.getElementById('musica-cap1');
         if(musica) { 
-            musica.volume = 0.3; // Volumen suave
+            musica.volume = 0.3; 
             musica.play().catch(e => {}); 
         }
     }
 }
 
-/* --- FUNCIÓN MODIFICADA PARA DETECTAR CAPÍTULO 2 --- */
+/* --- FUNCIÓN MAESTRA DE CAMBIO DE HOJA Y MÚSICA --- */
 function pasarHoja(elemento) {
     const h = elemento.closest('.hoja'); 
     h.classList.add('pasada');
     reproducir('snd-hoja');
     
     const pasadas = document.querySelectorAll('.hoja.pasada').length;
-    // Z-Index alto para que no desaparezca
     h.style.zIndex = 2000 + pasadas; 
 
-    // DETECCIÓN DE CAMBIO DE MÚSICA
-    // Buscamos si la página actual tiene el número 17 (Inicio Cap 2)
-    const numPag = h.querySelector('.num-pag');
-    if (numPag && numPag.innerText === "17") {
+    // DETECCIÓN DE CAMBIO DE MÚSICA POR PÁGINA
+    const numPag = h.querySelector('.num-pag')?.innerText;
+
+    if (numPag === "17") {
         cambiarMusica('musica-cap1', 'musica-cap2');
+    } else if (numPag === "38") {
+        cambiarMusica('musica-cap2', 'musica-cap3');
+    } else if (numPag === "77") { 
+        cambiarMusica('musica-cap3', 'musica-cap4');
+    } else if (numPag === "90") { 
+        cambiarMusica('musica-cap4', 'musica-cap5');
+    } else if (numPag === "119") { // NUEVO: CAPÍTULO FINAL
+        cambiarMusica('musica-cap5', 'musica-cap-final');
     }
 }
 
-/* --- NUEVA FUNCIÓN PARA TRANSICIÓN SUAVE DE MÚSICA --- */
 function cambiarMusica(idSalida, idEntrada) {
     const audioOut = document.getElementById(idSalida);
     const audioIn = document.getElementById(idEntrada);
 
     if(audioOut && audioIn) {
-        // Bajar volumen de la actual (Fade Out)
+        // Fade Out (Salida)
         let vol = audioOut.volume;
         const fadeOut = setInterval(() => {
             if(vol > 0.05) {
@@ -124,14 +130,14 @@ function cambiarMusica(idSalida, idEntrada) {
                 audioOut.currentTime = 0;
                 clearInterval(fadeOut);
             }
-        }, 200); // Cada 200ms baja un poco
+        }, 200);
 
-        // Iniciar la nueva (Fade In)
+        // Fade In (Entrada)
         audioIn.volume = 0;
         audioIn.play().catch(e => console.log("Error play", e));
         let volIn = 0;
         const fadeIn = setInterval(() => {
-            if(volIn < 0.3) { // Tope de volumen 0.3
+            if(volIn < 0.3) { 
                 volIn += 0.05;
                 audioIn.volume = volIn;
             } else {
@@ -149,15 +155,12 @@ function volverHoja(elemento) {
     const zOriginal = h.style.getPropertyValue('--z-original');
     if (zOriginal) { h.style.zIndex = zOriginal; } else { h.style.zIndex = 1000; }
     
-    // Si volvemos a la página anterior a la 17, podríamos revertir música, 
-    // pero por simplicidad lo dejamos así o se reinicia al cerrar.
-    
     setTimeout(() => {
         if(h.classList.contains('portada')) {
             document.getElementById('libro').classList.remove('abierto');
             document.getElementById('libro').classList.add('cerrado');
             reproducir('snd-cerrar');
-            silenciarTodo(); // Usamos la función de silenciar
+            silenciarTodo();
         }
     }, 500);
 }
@@ -179,12 +182,21 @@ function cerrarLibroTotal() {
     }, pasadas.length * 200 + 500);
 }
 
-/* Función auxiliar para apagar toda la música al cerrar */
+/* Función auxiliar para apagar TODA la música */
 function silenciarTodo() {
-    const m1 = document.getElementById('musica-cap1');
-    const m2 = document.getElementById('musica-cap2');
-    if(m1) { m1.pause(); m1.currentTime = 0; }
-    if(m2) { m2.pause(); m2.currentTime = 0; }
+    const audios = [
+        'musica-cap1', 
+        'musica-cap2', 
+        'musica-cap3', 
+        'musica-cap4', 
+        'musica-cap5', 
+        'musica-cap-final' // Agregado el final
+    ];
+    
+    audios.forEach(id => {
+        const m = document.getElementById(id);
+        if(m) { m.pause(); m.currentTime = 0; }
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
