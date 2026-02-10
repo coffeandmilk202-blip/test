@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <style>
-        /* Estilos solicitados */
+        /* Estilos */
         .sangria { text-indent: 25px; display: block; text-align: justify; margin-bottom: 10px; }
         .poema { text-align: center; font-style: italic; margin-top: 30px; font-family: 'Cormorant Garamond', serif; color: #555; line-height: 1.6; }
         .frase-negra { font-size: 0.85rem; line-height: 1.5; text-align: justify; color: #ddd; margin-top: 15px; font-style: italic; }
@@ -27,13 +27,34 @@
 
             <div class="lomo" onclick="girarLibroEntero()"></div>
             
-            <div class="tapa-trasera" onclick="girarLibroEntero()">
+
+            <div class="tapa-trasera" onclick="girarLibroEntero()" style="display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 20px;">
+                
                 <div class="dedicatoria-final">
-                    <p class="titulo-dedicatoria">Para ti...</p>
-                    <p>Gracias por ser mi coincidencia más bonita.</p>
-                    <p class="fecha">Siempre Juntos</p>
+                    <div style="margin-bottom: 30px;">
+                        <p style="font-size: 1rem; line-height: 1.6; margin: 0;">Para vos.</p>
+                        <p style="font-size: 1rem; line-height: 1.6; margin: 0;">Para el amor que elegí.</p>
+                        <p style="font-size: 1rem; line-height: 1.6; margin: 0;">Para el que me conoce incluso cuando no digo nada y aun así se queda.</p>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <p style="font-size: 0.85rem; font-style: italic; opacity: 0.9;">
+                            “Seis meses de elegirnos en la calma y en la tormenta.<br>
+                            Seis meses de desaprender el miedo y aprender a ser hogar.<br>
+                            Gracias por estos primeros 180 días de nosotros.”
+                        </p>
+                    </div>
+
+                    <div>
+                        <p style="font-family: 'Pinyon Script', cursive; font-size: 1.8rem; color: #ffcccc;">
+                            Feliz 6 meses, mi amor.
+                        </p>
+                    </div>
                 </div>
+
             </div>
+
+
 
             <div class="hoja portada" style="z-index: 2000; --z-original: 2000;" onclick="abrirLibro()">
                 <div class="titulo-portada">
@@ -44,11 +65,36 @@
 
             <div class="hoja" style="z-index: 1999; --z-original: 1999;" onclick="gestionarClic(this)">
                 <h2>Interlinked</h2>
-                <ul style="list-style: none; padding: 0; text-align: center; font-size: 1.1rem; font-weight: bold; color: #1a0505; margin-top: 40px;">
-                    <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">Prólogo</li>
-                    <li style="margin-bottom: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">I. El inicio de lo inesperado</li>
+                
+                <ul style="list-style: none; padding: 0; text-align: center; font-size: 0.95rem; font-weight: bold; color: #1a0505; margin-top: 25px;">
+                    
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        Prólogo
+                    </li>
+
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        I. El Eco de una Risa a las Cuatro de la Mañana
+                    </li>
+
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        II. La Lluvia y el Sacrificio
+                    </li>
+
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        III. El Vínculo en la Nieve
+                    </li>
+
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        IV. El Arte de Quedarse
+                    </li>
+
+                    <li style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                        V. El Corazón Descubierto y la Promesa Eterna
+                    </li>
+
                 </ul>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 20px;">(Toca la página para avanzar)</p>
+
+                <p style="font-size: 0.8rem; color: #999; margin-top: auto; margin-bottom: 20px;">(Toca la página para avanzar)</p>
             </div>
 
             <div class="hoja" style="z-index: 1998; --z-original: 1998;" onclick="gestionarClic(this)">
@@ -920,7 +966,6 @@
                 </div>
                 <div class="num-pag">127</div>
             </div>
-
 
             <div class="hoja guarda" style="z-index: 100; --z-original: 100;" onclick="gestionarClic(this)">
                 <div style="text-align:center;">
